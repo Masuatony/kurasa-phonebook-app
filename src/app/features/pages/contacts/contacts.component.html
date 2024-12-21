@@ -1,0 +1,16 @@
+<app-page-header title="Contacts"></app-page-header>
+<div class="container">
+  <button (click)="gridView()"><mat-icon>home</mat-icon></button>
+  <button (click)="listView()"><mat-icon>edit</mat-icon></button>
+  <select id="price" (change)="filterPrice()">
+    <option value="asc">Price - Low to High</option>
+    <option value="desc">Price - High to low</option>
+  </select>
+  <br />
+  <div class="row">
+    <div *ngFor="let product of productList" class="column">
+      {{product.name}}
+      - {{product.Price}}
+    </div>
+  </div>
+</div>

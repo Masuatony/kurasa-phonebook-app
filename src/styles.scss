@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use 'sass:string';
+//@import 'material-symbols';
+
+@include mat.core();
+
+
+$loan-recovery-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  ),
+  typography: (
+    brand-family: string.unquote('Figtree, "Helvetica Neue", sans-serif'),
+    plain-family: string.unquote('Figtree, "Helvetica Neue", sans-serif')
+  )
+));
+
+:root {
+  @include mat.all-component-themes($loan-recovery-theme);
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Figtree, "Helvetica Neue", sans-serif;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none;
+}
+
+
+.advanced-pie-legend .legend-items-container .legend-items {
+  padding-top: 20px;
+}
+
+.lr-card {
+  @apply border-none bg-lr-100 py-0 shadow-none;
+}
+
+.advanced-pie-legend .total-value {
+  @apply text-3xl font-mono font-light;
+}
+
+.advanced-pie-legend .total-label {
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+}
+
+.advanced-pie-legend .item-value {
+  @apply font-mono font-light;
+}
+
+.advanced-pie-legend .item-label {
+  @apply font-semibold text-sm;
+  margin-top: 4px !important;
+}
+
+.advanced-pie-legend .item-percent {
+  @apply font-mono font-light;
+  font-size: 1rem !important;
+}
+
+.section-title {
+  @apply font-semibold mb-4 text-lr-800;
+}
