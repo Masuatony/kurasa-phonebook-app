@@ -1,0 +1,57 @@
+<div class="flex flex-col space-y-8">
+  <section>
+    <h6 class="font-semibold text-xl mb-2">contact Details</h6>
+    <div class="grid grid-cols-1 bg-lr-100 rounded-xl divide divide-y">
+      <div class="flex justify-between p-4">
+        <span class="font-semibold">{{ 'First Name' }}</span>
+        <span class="">{{ contact?.firstName }}</span>
+      </div>
+      <div class="flex justify-between p-4">
+        <span class="font-semibold">{{ 'Last Name' }}</span>
+        <span class="">{{ contact?.lastName }}</span>
+      </div>
+      <div class="flex justify-between p-4">
+        <span class="font-semibold">{{ 'Phone Number' }}</span>
+        <span class="">{{ contact?.phone }}</span>
+      </div>
+      <div class="flex justify-between p-4">
+        <span class="font-semibold">{{ 'email' }}</span>
+        <span class="">{{ contact?.email }}</span>
+      </div>
+<!--      <div class="flex justify-between p-4">-->
+<!--        <span class="font-semibold">{{ 'Email' }}</span>-->
+<!--        <app-contact-status-badge [status]="contact?.status || ''"/>-->
+<!--      </div>-->
+<!--      <div class="flex justify-between p-4">-->
+<!--        <span class="font-semibold">{{ 'REPAYMENT_SCHEDULE' | translate }}</span>-->
+<!--        <span class="capitalize">{{ (contact?.repaymentSchedule || '') | translate }}</span>-->
+<!--      </div>-->
+    </div>
+  </section>
+  <section>
+    <button class="float-right" (click)="onEditForm.emit(contact)" mat-fab extended>
+      <mat-icon class="material-symbols-rounded"><mat-icon>edit</mat-icon></mat-icon>
+      {{'UPDATE_STATUS' }}
+    </button>
+  </section>
+  <section>
+    <h6 class="font-semibold text-xl mb-4">Contact Audits</h6>
+    <div class="grid grid-cols-1 space-y-4" *ngIf="contact?.createdAt;else dates">
+      <div class="flex space-x-4 text-sm font-light items-center">
+        <span>{{ 'Created On' }}</span>
+        <span class="border-lr-900 h-1 border-t-0 border-2 border-x-0  border-dashed flex-1"></span>
+        <span> <strong>{{ contact?.lastUpdated | date: 'dd-MM-yyyy' }}</strong></span>
+      </div>
+      <div class="flex space-x-4 text-sm font-light items-center">
+        <span>{{ 'Updated On' }}</span>
+        <span class="border-lr-900 h-1 border-t-0 border-2 border-x-0  border-dashed flex-1"></span>
+        <span> <strong>{{ contact?.lastUpdated | date: 'dd-MM-yyyy' }}</strong></span>
+      </div>
+    </div>
+    <ng-template #dates>
+      <div>
+
+      </div>
+    </ng-template>
+  </section>
+</div>

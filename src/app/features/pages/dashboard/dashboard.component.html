@@ -1,0 +1,27 @@
+<div>
+  <app-page-header title="Dashboard"/>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-1 md:gap-4 gap-2 mb-8">
+    <div class="col-span-1">
+      <app-stat-card title="Total Active Contacts" value="650"/>
+    </div>
+    <div class="col-span-1">
+      <app-stat-card title="Total Favourites" value="101"/>
+    </div>
+    <div class="col-span-1">
+      <app-stat-card title="Total Grouped" value=""/>
+    </div>
+    <div class="col-span-1">
+      <app-stat-card title="Total Deleted" value="200"/>
+    </div>
+  </div>
+  <div class="grid grid-cols-5  gap-6">
+    <div class="col-span-5">
+      <p class="section-title">{{ 'Contacts by type' }}</p>
+<!--      <app-contact-types-chart/>-->
+    </div>
+<!--    <div class="col-span-5">-->
+<!--      <p class="section-title">{{ 'RECOVERED_LOANS_BY_MONTH' | translate }}</p>-->
+<!--      <app-monthly-recovered-chart/>-->
+<!--    </div>-->
+  </div>
+</div>

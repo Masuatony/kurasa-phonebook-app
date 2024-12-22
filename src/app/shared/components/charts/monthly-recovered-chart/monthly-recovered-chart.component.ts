@@ -16,7 +16,6 @@ export class MonthlyRecoveredChartComponent {
   monthlyStats: any = [];
 
   constructor(
-    // private translateService: TranslateService,
     private store: Store,
   ) {
     this.handleTranslations();

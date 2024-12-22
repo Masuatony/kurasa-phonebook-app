@@ -1,0 +1,80 @@
+
+
+<section  class="flex flex-col space-y-4" >
+
+  <mat-card>
+    <mat-card-title>
+      <h5>{{title}}</h5>
+      <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="parentFormGroup!" (ngSubmit)="submitForm()">
+        <div>
+          <div class="flex md:space-x-6 md:flex-row flex-col">
+            <mat-form-field class="w-full md:w-1/2" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input type="text"
+                     formControlName="firstName"
+                     placeholder="First Name"
+                     aria-label="Number"
+                     matInput>
+            </mat-form-field>
+            <mat-form-field class="w-full md:w-1/2" appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input type="text"
+                     formControlName="lastName"
+                     placeholder="Last Name"
+                     aria-label="Number"
+                     matInput>
+            </mat-form-field>
+          </div>
+          <!--    <div class="flex md:space-x-6 md:flex-row flex-col">-->
+          <!--      <mat-form-field class="w-full" appearance="outline">-->
+          <!--        <mat-label>Account Number</mat-label>-->
+          <!--        <input type="text"-->
+          <!--               formControlName="phone"-->
+          <!--               placeholder="Account Number"-->
+          <!--               aria-label="Account Number"-->
+          <!--               matInput>-->
+          <!--      </mat-form-field>-->
+          <!--    </div>-->
+          <div class="flex md:space-x-6 md:flex-row flex-col">
+            <mat-form-field class="w-full md:w-1/2" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input type="email"
+                     formControlName="email"
+                     placeholder="Email"
+                     aria-label="Email"
+                     matInput>
+            </mat-form-field>
+            <mat-form-field class="w-full md:w-1/2" appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input type="text"
+                     formControlName="phone"
+                     placeholder="Phone Number"
+                     aria-label="Account Number"
+                     matInput>
+            </mat-form-field>
+          </div>
+          <div class="flex md:space-x-6 md:flex-row flex-col">
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>Address</mat-label>
+              <textarea formControlName="address" type="text" placeholder="Address" aria-label="Email" matInput></textarea>
+            </mat-form-field>
+          </div>
+          <button
+            (click)="dialogRef.close()"
+            type="button" class="py-1 float-right text-lg font-semibold px-4 rounded-full hover:bg-red-400 flex space-x-1 text-red-300 items-center">
+<!--            <span class="material-symbols-rounded"><mat-icon>cancel</mat-icon></span>-->
+            <span>cancel</span>
+          </button>
+          <button  type="submit" class="py-1 float-right text-lg font-semibold px-4 rounded-full hover:bg-blue-100 flex space-x-1 text-blue-500 items-center">
+<!--            <span class="material-symbols-rounded"><mat-icon>add</mat-icon></span>-->
+            <span>{{pageFunction}} </span>
+          </button>
+
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

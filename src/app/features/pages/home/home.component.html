@@ -1,38 +1,36 @@
-<!-- <div>
-  <mat-grid-list
-    [cols]="breakpoint"
-    rowHeight="2:0.5"
-    (window:resize)="onResize($event)"
-  >
-    <mat-grid-tile>
-      <div>123</div>
-    </mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-    <mat-grid-tile>5</mat-grid-tile>
-    <mat-grid-tile>6</mat-grid-tile>
-  </mat-grid-list>
-</div> -->
+
 <app-page-header title="PHONE"></app-page-header>
-
-<div>
-  <button (click)="toggleView()">
-    Switch to {{ isGridView ? 'List' : 'Grid' }} View
-  </button>
-</div>
-
-<div [ngClass]="{'grid-view': isGridView, 'list-view': !isGridView}">
-  <div *ngFor="let item of products" class="item">
-    <div *ngIf="isGridView" class="grid-item">
-      <!-- Grid item layout -->
-<!--      <img [src]="item.image" alt="{{ item.name }}">-->
-      <p>{{ item.name }}</p>
+<!--<pre >{{ arrayList$}}</pre>-->
+<div class="container-general">
+  <mat-card>
+    <div class="" style="display: flex; justify-content: space-between">
+      <button (click)="toggleView()" mat-fab extended>
+        Switch to {{ isGridView ? 'List' : 'Grid' }} View
+        <mat-icon>{{isGridView ?  'view_module' : 'view_list'}}</mat-icon>
+      </button>
+      <button (click)="onCreateNew()" mat-fab extended>
+        add new
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
-    <div *ngIf="!isGridView" class="list-item">
-      <!-- List item layout -->
-      <h3>{{ item.name }}</h3>
-      <img [src]="item.image" alt="{{ item.name }}" style="width:50px;">
-    </div>
+  </mat-card>
+  <div [ngClass]="{'grid-view': isGridView, 'list-view': !isGridView}" >
+    @for(item of contactList(); track $index) {
+      <div class="item ">
+        <div *ngIf="isGridView" class="grid-item api-grid-new">
+          <app-contact-card [contact]="item" (click)="handleSelected(item)"></app-contact-card>
+        </div>
+        <div *ngIf="!isGridView" class="list-item">
+          <app-contact-card [contact]="item"></app-contact-card>
+        </div>
+      </div>
+    }
   </div>
 </div>
+
+<app-drawer (closeDrawer)="handleDrawerClose()" [title]="'Contact #' + (selectedContact)?.firstName"
+            [open]="!!(selectedContact )">
+  <app-contact-details [contact]="(selectedContact) "></app-contact-details>
+</app-drawer>
+
+

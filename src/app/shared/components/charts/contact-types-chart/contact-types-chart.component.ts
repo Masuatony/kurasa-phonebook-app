@@ -6,12 +6,12 @@ import { map, mergeMap, of, switchMap, toArray } from 'rxjs';
 import {languageSelector} from "../../../../store/language/language.selectors";
 
 @Component({
-  selector: 'app-loan-types-chart',
+  selector: 'app-contact-types-chart',
   standalone: true,
   imports: [MatCard, MatCardContent, NgxChartsModule],
-  templateUrl: './loan-types-chart.component.html',
+  templateUrl: './contact-types-chart.component.html',
 })
-export class LoanTypesChartComponent {
+export class ContactTypesChartComponent {
   selectedLanguage$ = this.store.select(languageSelector);
 
   loanTypes: any = [];

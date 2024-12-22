@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <div class="delete_header">
+      <div>
+        <h2>{{ pageFunction }}</h2>
+      </div>
+      <div style="margin-top: 6px">
+        <button mat-icon-button color="accent" (click)="dialogRef.close()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="contents">
+      <mat-icon color="warn">warning</mat-icon>
+      <p>{{ deleteText }}</p>
+    </div>
+  </mat-card-content>
+  <mat-divider />
+  <mat-card-footer>
+    <div class="delete_footer">
+      <div>
+        <button mat-stroked-button (click)="dialogRef.close()">Cancel</button>
+      </div>
+      <div>
+        <button
+          color="warn"
+          mat-raised-button
+          (click)="deleteModuleRequest()"
+          [class.spinner]="loading"
+          [disabled]="loading">
+          Delete
+        </button>
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>

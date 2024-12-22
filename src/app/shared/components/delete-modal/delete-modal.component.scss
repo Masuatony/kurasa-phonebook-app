@@ -1,0 +1,52 @@
+.mat-mdc-card {
+  padding: 10px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0px -4px 8px rgba(0, 0, 0, 0.1),
+    4px 0px 8px rgba(0, 0, 0, 0.1),
+    -4px 0px 8px rgba(0, 0, 0, 0.1);
+
+  .mat-mdc-card-header {
+    padding: 10px;
+    background-color: #e6dede;
+    h2 {
+      text-align: center;
+    }
+  }
+  .button_boring {
+    display: flex;
+    //flex-direction;
+    align-items: flex-end;
+  }
+
+  p {
+    font-size: 2rem;
+  }
+  .delete_footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5em;
+  }
+  .contents {
+    text-align: center;
+    .mat-icon {
+      margin-top: 5px;
+      //todo increase size
+      //font-size: 40px;
+    }
+  }
+  .delete_header {
+    display: flex;
+    justify-content: center;
+    //gap: 2rem;
+
+    //.button_boring {
+    //  align-items: flex-end;
+    //}
+
+    //button {
+    //  align-items: flex-end;
+    //}
+  }
+}

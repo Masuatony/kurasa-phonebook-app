@@ -1,4 +1,7 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit, signal} from "@angular/core";
+import {Observable, of} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {CONTACTS} from "../pages/contact";
 
 export interface IContact {
   name: string;
@@ -18,6 +21,12 @@ export class ContactsService {
     { name: 'Janez', number: '444-444-4444', popular: false }
   ];
 
+  items = signal([]);
+
+  constructor(private _http: HttpClient) {
+    // this.items.set();
+  }
+
   getContacts(): IContact[] {
     return this.contacts;
   }
@@ -26,6 +35,16 @@ export class ContactsService {
     return this.contacts.filter((contact: IContact) => {
       return contact.popular;
     });
+  }
+
+  fetchContacts = (): Observable<any> => {
+      // return this._http.get('http://localhost:4200/api/phone');
+    return of(CONTACTS);
+  }
+
+  createLoan(data: any) {
+
+    // return this._http.post('http://localhost:4200/api/phone', data);
   }
 
 }

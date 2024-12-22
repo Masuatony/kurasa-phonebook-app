@@ -23,9 +23,15 @@ export class SidebarComponent {
       shouldMatchExact: true,
     },
     {
-      icon: 'contacts',
+      icon: 'phonebook',
       label: 'PHONEBOOK',
       path: 'phonebook',
+      shouldMatchExact: false,
+    },
+    {
+      icon: 'contacts',
+      label: 'CONTACTS',
+      path: 'contacts',
       shouldMatchExact: false,
     },
   ];

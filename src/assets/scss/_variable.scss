@@ -1,0 +1,99 @@
+.api-grid-new {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 0 6px 0 0;
+
+  @media screen and (min-width: 1441px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+
+  @media screen and (min-width: 993px) and (max-width: 1440px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
+}
+
+.container-general {
+  padding: 0.75em;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0;
+}
+@media (min-width: 576px) {
+  .container-general {
+    max-width: 540px;
+  }
+}
+@media (min-width: 769px) {
+  .container-general {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container-general {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-general {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-general {
+    max-width: 1320px;
+  }
+}
+.box-part {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  cursor: pointer;
+  .text {
+    span {
+      color: #777;
+      font-size: 14px;
+    }
+  }
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.box-part:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(
+      rgba(234, 234, 234, 0.9),
+      rgba(243, 243, 243, 0.6)
+  );
+}
+

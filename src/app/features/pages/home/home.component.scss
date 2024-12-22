@@ -26,42 +26,15 @@ $varX: #1dc5b7dc;
 }
 
 button {
-  background-color: #60c771;
-  //color: #1245eb;
-  //align-content: flex-end;
-  width: fit-content;
-  height: fit-content;
-  //margin-left: 10rem;
-  //margin-right: -10rem;
-  //margin-top: 1rem;
 }
 
-// .mat-button-toggle:hover {
-//   background-color: transparent;
-//   color: #1100ff !important;
-// }
-
-// .mat-button-toggle-checked {
-//   background-color: transparent;
-//   color: #29b33c !important;
-// }
-
-//.mat-grid-tile {
-// background-color: rgb(80, 73, 73);
-//width: 20rem;
-
-//margin: -10px;
-//padding: -10px -10px -10px -10px;
-//max-height: initial;
-//padding: 10px 10px 10px 10px ;
-//}
 .grid-view {
   display: flex;
   flex-wrap: wrap;
 }
 
 .grid-item {
-  width: calc(33.33% - 10px);
+  //width: calc(33.33% - 10px);
   margin: 5px;
 }
 
@@ -73,4 +46,43 @@ button {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+//
+table {
+  background: white;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+  @apply border-b-stone-300 border-t-0
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  @apply bg-zinc-100;
+  @apply transition-all;
+}
+
+.mat-mdc-row td:first-child {
+  border-top-left-radius:  9999px;
+  border-bottom-left-radius: 9999px;
+}
+
+.mat-mdc-row td:last-child {
+  border-top-right-radius:  9999px;
+  border-bottom-right-radius:  9999px;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-mdc-card {
+  padding: 10px;
+  margin: 20px 0 20px 0;
+
+  @media  (min-width: 768px) {
+    //display: flex;
+    flex-wrap: nowrap;
+  }
 }
