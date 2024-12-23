@@ -29,8 +29,8 @@ button {
 }
 
 .grid-view {
-  display: flex;
-  flex-wrap: wrap;
+  //display: flex;
+  //flex-wrap: wrap;
 }
 
 .grid-item {
@@ -45,7 +45,9 @@ button {
 .list-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
+  width: 300px;
 }
 
 //

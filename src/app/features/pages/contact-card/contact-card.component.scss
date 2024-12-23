@@ -1,3 +1,19 @@
 .mat-mdc-card {
-  max-width: 300px;
+  padding: 0.5em 0 0 0;
+  //width: 100%;
+  width: 300px;
+  .mat-mdc-card-content {
+    .details {
+      display: flex;
+      flex-direction: row;
+      .inscription {
+        //display: flex;
+        margin-top: 0.6em;
+        margin-right: 1em;
+      }
+    }
+  }
+}
+.spacer {
+  flex: 1 1 auto;
 }
