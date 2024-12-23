@@ -1,18 +1,52 @@
 
 <app-page-header title="PHONEBOOK"></app-page-header>
-<div class="container-general">
-  <mat-card>
-    <div class="" style="display: flex; justify-content: space-between">
-      <button (click)="toggleView()" mat-fab extended>
-        Switch to {{ isGridView ? 'List' : 'Grid' }} View
-        <mat-icon>{{isGridView ?  'view_module' : 'view_list'}}</mat-icon>
-      </button>
-      <button (click)="onCreateNew()" mat-fab extended>
-        add new
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </mat-card>
+<div class="container-general ">
+  <div class="add">
+    <mat-card >
+<!--      <div class="" style="display: flex; justify-content: space-between">-->
+        <button (click)="toggleView()" mat-fab extended>
+          Switch to {{ isGridView ? 'List' : 'Grid' }} View
+          <mat-icon>{{isGridView ?  'view_module' : 'view_list'}}</mat-icon>
+        </button>
+        <button (click)="onCreateNew()" mat-fab extended>
+          add new
+          <mat-icon>add</mat-icon>
+        </button>
+<!--      </div>-->
+    </mat-card>
+
+  </div>
+  <div class="container-general filters">
+    <mat-card>
+      <ng-container>
+        <mat-form-field appearance="outline">
+          <mat-label>search</mat-label>
+          <input matInput
+                 [(ngModel)]="searchValue"
+                 (keyup)="handleSearchChange($event)"
+                 placeholder="Search for contacts..."
+                 autocomplete="off"
+                 aria-label="Search"
+          >
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </ng-container>
+      <ng-container>
+        <mat-form-field appearance="outline">
+          <mat-label>status</mat-label>
+          <mat-select (selectionChange)="handleStatusChange($event)">
+            @for (status of options(); track status) {
+              <mat-option [value]="status" >
+                {{ status }}
+<!--                <mat-divider></mat-divider>-->
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+    </mat-card>
+  </div>
+
   <div [ngClass]="{'api-grid-new': isGridView, 'list-view': !isGridView}" >
     @for(item of contactList(); track $index) {
       <div class="item ">

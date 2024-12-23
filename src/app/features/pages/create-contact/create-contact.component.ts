@@ -36,24 +36,14 @@ export class CreateContactComponent implements OnInit{
    formData: any;
    constructor(
      private _fb: FormBuilder,
-     private route: ActivatedRoute,
      @Inject(MAT_DIALOG_DATA) public data: any,
-     // private notification: Notification,
      public dialogRef: MatDialogRef<CreateContactComponent>
      ) {
    }
    ngOnInit() {
-     // if (!this.route.queryParams) this.pageFunction = 'Add';
-     // this.route.queryParams.subscribe({
-     //   next: (params: Params) => {
-     //     if (Object.prototype.hasOwnProperty.call(params, 'rowData')) {
-     //       this.pageFunction = params['action'];
-     //       this.formData = JSON.parse(params['rowData']);
-     //     }
-     //   },
-     // });
      this.pageFunction = this.data.action;
      this.title = this.data.title;
+     this.formData = this.data.data;
      this.handleFormInit();
    }
 
@@ -68,12 +58,15 @@ export class CreateContactComponent implements OnInit{
        });
      } else {
        this.parentFormGroup = this._fb.group({
-         firstName: new FormControl("", Validators.required),
-         lastName: new FormControl("", Validators.required),
-         phone: new FormControl("", Validators.required),
-         email: new FormControl("", Validators.required),
-         address: new FormControl("", Validators.required),
-         existingBorrower: new FormControl(false),
+         firstName: [this.formData.firstName, Validators.required],
+         lastName: [this.formData.lastName, Validators.required],
+         phone: [this.formData.phone, Validators.required],
+         email: [this.formData.email,Validators.required],
+         address: [this.formData.address, Validators.required],
+         id: [this.formData.id, Validators.required],
+         status: [this.formData.status, Validators.required],
+         lastUpdated: [new Date(), Validators.required],
+         createdAt: [this.formData.createdAt, Validators.required],
        });
      }
    }
