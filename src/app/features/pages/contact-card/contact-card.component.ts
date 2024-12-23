@@ -5,6 +5,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
+import {CamelCaseToUpperPipe} from "../../../shared/pipes/camel-case-to-upper.pipe";
 
 @Component({
   selector: 'app-contact-card',
@@ -19,7 +20,8 @@ import {RouterLink} from "@angular/router";
     MatMenu,
     MatMenuItem,
     RouterLink,
-    MatMenuTrigger
+    MatMenuTrigger,
+    CamelCaseToUpperPipe
   ],
   templateUrl: './contact-card.component.html',
   styleUrl: './contact-card.component.scss'

@@ -1,5 +1,5 @@
 import {Component, OnInit, signal} from '@angular/core';
-import {MatFormField} from "@angular/material/form-field";
+import {MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {AsyncPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {PageHeaderComponent} from "../../../layout/common/page-header/page-header.component";
 import {Router} from "@angular/router";
@@ -8,7 +8,7 @@ import {CreateContactComponent} from "../create-contact/create-contact.component
 import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {BehaviorSubject, Observable} from "rxjs";
-import {CONTACTS} from "../contact";
+import {Contact, CONTACTS} from "../contact";
 import {DeleteModalComponent} from "../../../shared/components/delete-modal/delete-modal.component";
 import {DrawerComponent} from "../../../layout/common/drawer/drawer.component";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
@@ -16,6 +16,10 @@ import {Store} from "@ngrx/store";
 import {deselectContact, selectContact} from "../../../store/contacts/contact.actions";
 import {ContactCardComponent} from "../contact-card/contact-card.component";
 import {MatCard} from "@angular/material/card";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {MatInput} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatDivider} from "@angular/material/divider";
 
 @Component({
   selector: 'app-home',
@@ -33,7 +37,14 @@ import {MatCard} from "@angular/material/card";
     DrawerComponent,
     ContactDetailsComponent,
     ContactCardComponent,
-    MatCard
+    MatCard,
+    MatSelect,
+    MatOption,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    MatSuffix,
+    MatDivider
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -42,16 +53,21 @@ export class HomeComponentOnInit implements OnInit{
   products: any;
   isGridView: boolean = true;
   contacts: BehaviorSubject<any> = new BehaviorSubject([]);
-  contactsArr$ = this.contacts.asObservable();
-  arrayList$: Observable<any> = new Observable<any>();
-  contactList = signal<any>([]);
+  options = signal<any>([
+    "home",
+    "company",
+    "family",
+    "work",
+    "favorite"
+  ]);
+  contactList = signal<any>([
+  ]);
+  searchValue: string = '';
   constructor(
-    private router: Router,
     private dialog: MatDialog,
     private store: Store
     ) {
   }
-  // selectedContact = this.store.select(selectSelectedLoan);
   selectedContact: any;
   ngOnInit() {
     this.fetchContacts();
@@ -65,9 +81,38 @@ export class HomeComponentOnInit implements OnInit{
     this.contacts.next(CONTACTS);
     this.contacts.subscribe({
       next: (_result: any) => {
+        const options = Array.from(new Set(_result.map((status: string) => status)));
+        // this.options.set(options);
         this.contactList.set(_result);
       }
     })
+  }
+
+  handleStatusChange = (event: any) => {
+    const status = event.value;
+    const filteredContacts = CONTACTS.filter((contact: any) => contact.status === status);
+    this.contacts.next(filteredContacts);
+    this.contacts.subscribe({
+      next: (contacts: any) => {
+        this.contactList.set(contacts);
+      }
+    });
+  }
+
+  handleSearchChange = (event: any) => {
+    this.searchValue = event.target.value;
+    const filteredContacts = CONTACTS.filter((contact: any) =>
+      contact.firstName.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      contact.lastName.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      contact.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      contact.phone.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    this.contacts.next(filteredContacts);
+    this.contacts.subscribe({
+      next: (contacts: any) => {
+        this.contactList.set(contacts);
+      }
+    });
   }
 
   trackByIndex(index: number, item: any): number {
@@ -76,7 +121,7 @@ export class HomeComponentOnInit implements OnInit{
 
   handleMenuAction(event: { action: string; contact: any }) {
     if (event.action === 'edit') {
-      this.handleSelected(event.contact);
+      this.onEdit(event.contact);
     } else if (event.action === 'delete') {
       this.onDeleteContact(event.contact);
     } else if (event.action === 'view') {
@@ -126,6 +171,34 @@ export class HomeComponentOnInit implements OnInit{
         if (_result) {
           const currentContacts = this.contacts.getValue();
           const updatedContacts = [...currentContacts, _result];
+          this.contacts.next(updatedContacts);
+          this.contacts.subscribe({
+            next: (contacts: any) => {
+              this.contactList.set(contacts);
+            }
+          });
+        }
+      }
+    })
+  }
+
+  onEdit = (rowData: Contact) => {
+    const dialogRef = this.dialog.open(CreateContactComponent,{
+      width: '800px',
+      data: {
+        title: 'Edit Contact',
+        action: 'create',
+        data: rowData,
+      },
+      disableClose: true,
+    })
+    dialogRef.afterClosed().subscribe({
+      next: (_result: any) => {
+        if (_result) {
+          const currentContacts = this.contacts.getValue();
+          const updatedContacts = currentContacts.map((contact: any) =>
+            contact.id === _result.id ? _result : contact
+          );
           this.contacts.next(updatedContacts);
           this.contacts.subscribe({
             next: (contacts: any) => {
