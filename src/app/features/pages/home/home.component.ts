@@ -1,7 +1,6 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {MatFormField} from "@angular/material/form-field";
 import {AsyncPipe, NgClass, NgForOf, NgIf} from "@angular/common";
-import {PRODUCTS} from "../contacts/products";
 import {PageHeaderComponent} from "../../../layout/common/page-header/page-header.component";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -15,7 +14,6 @@ import {DrawerComponent} from "../../../layout/common/drawer/drawer.component";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {Store} from "@ngrx/store";
 import {deselectContact, selectContact} from "../../../store/contacts/contact.actions";
-import {selectSelectedLoan} from "../../../store/contacts/contact.selector";
 import {ContactCardComponent} from "../contact-card/contact-card.component";
 import {MatCard} from "@angular/material/card";
 
@@ -56,7 +54,6 @@ export class HomeComponentOnInit implements OnInit{
   // selectedContact = this.store.select(selectSelectedLoan);
   selectedContact: any;
   ngOnInit() {
-    this.products = PRODUCTS;
     this.fetchContacts();
   }
 
@@ -65,9 +62,7 @@ export class HomeComponentOnInit implements OnInit{
   }
 
   fetchContacts = () => {
-    const data = CONTACTS;
-    console.log("data loaded", data)
-    this.contacts.next(data);
+    this.contacts.next(CONTACTS);
     this.contacts.subscribe({
       next: (_result: any) => {
         this.contactList.set(_result);
@@ -75,13 +70,27 @@ export class HomeComponentOnInit implements OnInit{
     })
   }
 
-  onDeleteContact() {
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
+
+  handleMenuAction(event: { action: string; contact: any }) {
+    if (event.action === 'edit') {
+      this.handleSelected(event.contact);
+    } else if (event.action === 'delete') {
+      this.onDeleteContact(event.contact);
+    } else if (event.action === 'view') {
+      this.handleSelected(event.contact);
+    }
+  }
+
+  onDeleteContact(rowData: any) {
     const dialogRef  = this.dialog.open(DeleteModalComponent, {
       width: '400px',
       data: {
         title: 'Delete Contact',
         action: 'delete',
-        data: null,
+        rowData: rowData,
         message: 'Are you sure you want to delete this contact?',
       },
       disableClose: true,
@@ -90,7 +99,7 @@ export class HomeComponentOnInit implements OnInit{
       next: (_result) => {
         if (_result) {
           const currentContacts = this.contacts.getValue();
-          const updatedContacts = currentContacts.filter((contact: any) => contact.id!== _result.id);
+          const updatedContacts = currentContacts.filter((contact: any) => contact.id!== _result.rowData.id);
           this.contacts.next(updatedContacts);
           this.contacts.subscribe({
             next: (contacts: any) => {

@@ -18,14 +18,10 @@
         <span class="font-semibold">{{ 'email' }}</span>
         <span class="">{{ contact?.email }}</span>
       </div>
-<!--      <div class="flex justify-between p-4">-->
-<!--        <span class="font-semibold">{{ 'Email' }}</span>-->
-<!--        <app-contact-status-badge [status]="contact?.status || ''"/>-->
-<!--      </div>-->
-<!--      <div class="flex justify-between p-4">-->
-<!--        <span class="font-semibold">{{ 'REPAYMENT_SCHEDULE' | translate }}</span>-->
-<!--        <span class="capitalize">{{ (contact?.repaymentSchedule || '') | translate }}</span>-->
-<!--      </div>-->
+      <div class="flex justify-between p-4">
+        <span class="font-semibold">{{ 'Category' }}</span>
+        <app-status-badge [status]="contact?.status || ''"/>
+      </div>
     </div>
   </section>
   <section>

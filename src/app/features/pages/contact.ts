@@ -7,7 +7,8 @@ export interface Contact {
   address?: string,
   company?: string,
   lastUpdated?: Date,
-  createdAt?: Date
+  createdAt?: Date,
+  status?: string
 }
 
 export const CONTACTS = [
@@ -22,6 +23,7 @@ export const CONTACTS = [
     createdAt: '2021-05-12T00:00:00.000Z',
     lastUpdated: '2023-07-20T00:00:00.000Z',
     favourite: 2,
+    status: 'family',
   },
   {
     id: 'b8e4f2c8-82a2-4d55-916f-7b3d04efc94e',
@@ -34,6 +36,7 @@ export const CONTACTS = [
     createdAt: '2021-06-15T00:00:00.000Z',
     lastUpdated: '2023-08-01T00:00:00.000Z',
     favourite: 1,
+    status: 'company',
   },
   {
     id: 'c9f5g3d9-93b3-5e66-927f-8c4e05gfd95f',
@@ -46,6 +49,7 @@ export const CONTACTS = [
     createdAt: '2022-01-10T00:00:00.000Z',
     lastUpdated: '2023-07-30T00:00:00.000Z',
     favourite: 3,
+    status: 'home'
   },
   {
     id: 'd0g6h4e0-04c4-6f77-038g-9d5f16hge06g',
@@ -58,6 +62,7 @@ export const CONTACTS = [
     createdAt: '2022-03-05T00:00:00.000Z',
     lastUpdated: '2023-07-25T00:00:00.000Z',
     favourite: 2,
+    status: 'favorite'
   },
   {
     id: 'e1h7i5f1-15d5-7g88-149h-0e6g27ihf17h',
@@ -70,6 +75,7 @@ export const CONTACTS = [
     createdAt: '2021-11-20T00:00:00.000Z',
     lastUpdated: '2023-07-15T00:00:00.000Z',
     favourite: 1,
+    status: 'work'
   },
   {
     id: 'f2i8j6g2-26e6-8h99-250i-1f7h38jig28i',
@@ -82,6 +88,7 @@ export const CONTACTS = [
     createdAt: '2022-04-15T00:00:00.000Z',
     lastUpdated: '2023-08-05T00:00:00.000Z',
     favourite: 3,
+    status: 'home'
   },
   {
     id: 'g3j9k7h3-37f7-9i00-361j-2g8i49kjh39j',
@@ -94,6 +101,7 @@ export const CONTACTS = [
     createdAt: '2021-07-25T00:00:00.000Z',
     lastUpdated: '2023-07-18T00:00:00.000Z',
     favourite: 1,
+    status: 'work'
   },
   {
     id: 'h4k0l8i4-48g8-0j11-472k-3h9j50lik40k',
@@ -106,6 +114,7 @@ export const CONTACTS = [
     createdAt: '2022-02-10T00:00:00.000Z',
     lastUpdated: '2023-07-22T00:00:00.000Z',
     favourite: 2,
+    status: 'company'
   },
   {
     id: 'i5l1m9j5-59h9-1k22-583l-4i0k61mlj51l',
@@ -118,6 +127,7 @@ export const CONTACTS = [
     createdAt: '2022-05-05T00:00:00.000Z',
     lastUpdated: '2023-07-28T00:00:00.000Z',
     favourite: 3,
+    status: 'family'
   },
   {
     id: 'j6m2n0k6-60i0-2l33-694m-5j1l72nmj62m',
@@ -130,6 +140,7 @@ export const CONTACTS = [
     createdAt: '2021-08-15T00:00:00.000Z',
     lastUpdated: '2023-07-19T00:00:00.000Z',
     favourite: 1,
+    status: 'work'
   },
   {
     id: 'k7n3o1l7-71j1-3m44-705n-6k2m83onl73n',
@@ -142,6 +153,7 @@ export const CONTACTS = [
     createdAt: '2022-06-20T00:00:00.000Z',
     lastUpdated: '2023-07-24T00:00:00.000Z',
     favourite: 2,
+    status: 'family'
   },
   {
     id: 'l8o4p2m8-82k2-4n55-816o-7l3n94pml84o',
@@ -154,5 +166,6 @@ export const CONTACTS = [
     createdAt: '2022-07-30T00:00:00.000Z',
     lastUpdated: '2023-08-02T00:00:00.000Z',
     favourite: 3,
+    status: 'company'
   },
 ]

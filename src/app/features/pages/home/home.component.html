@@ -1,6 +1,5 @@
 
-<app-page-header title="PHONE"></app-page-header>
-<!--<pre >{{ arrayList$}}</pre>-->
+<app-page-header title="PHONEBOOK"></app-page-header>
 <div class="container-general">
   <mat-card>
     <div class="" style="display: flex; justify-content: space-between">
@@ -14,15 +13,21 @@
       </button>
     </div>
   </mat-card>
-  <div [ngClass]="{'grid-view': isGridView, 'list-view': !isGridView}" >
+  <div [ngClass]="{'api-grid-new': isGridView, 'list-view': !isGridView}" >
     @for(item of contactList(); track $index) {
       <div class="item ">
-        <div *ngIf="isGridView" class="grid-item api-grid-new">
-          <app-contact-card [contact]="item" (click)="handleSelected(item)"></app-contact-card>
-        </div>
-        <div *ngIf="!isGridView" class="list-item">
-          <app-contact-card [contact]="item"></app-contact-card>
-        </div>
+        @if (isGridView) {
+          <div class="grid-item api-grid-new">
+            <app-contact-card [contact]="item" (menuTrigger)="handleMenuAction($event)"></app-contact-card>
+          </div>
+        } @else {
+          <div  class="list-item">
+            <app-contact-card [contact]="item" (menuTrigger)="handleMenuAction($event)"></app-contact-card>
+          </div>
+        }
+<!--        @if (!isGridView){-->
+<!--          -->
+<!--        }-->
       </div>
     }
   </div>
