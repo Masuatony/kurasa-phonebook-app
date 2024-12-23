@@ -119,6 +119,15 @@ export class HomeComponentOnInit implements OnInit{
     return index;
   }
 
+  clearFilters = () => {
+    this.contacts.next(CONTACTS);
+    this.contacts.subscribe({
+      next: (contacts: any) => {
+        this.contactList.set(contacts);
+      }
+    });
+  }
+
   handleMenuAction(event: { action: string; contact: any }) {
     if (event.action === 'edit') {
       this.onEdit(event.contact);
