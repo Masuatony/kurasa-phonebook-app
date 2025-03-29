@@ -2,7 +2,6 @@ import {Component, OnInit, signal} from '@angular/core';
 import {MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {AsyncPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {PageHeaderComponent} from "../../../layout/common/page-header/page-header.component";
-import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateContactComponent} from "../create-contact/create-contact.component";
 import {MatButton, MatFabButton} from "@angular/material/button";

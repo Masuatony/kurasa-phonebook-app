@@ -75,7 +75,8 @@
   </div>
 </div>
 
-<app-drawer (closeDrawer)="handleDrawerClose()" [title]="'Contact #' + (selectedContact)?.firstName"
+<app-drawer (closeDrawer)="handleDrawerClose()"
+            [title]="'Contact #' + (selectedContact)?.firstName"
             [open]="!!(selectedContact )">
   <app-contact-details [contact]="(selectedContact) "></app-contact-details>
 </app-drawer>
